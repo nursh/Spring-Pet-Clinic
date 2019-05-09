@@ -1,0 +1,5 @@
+com/nursh/petclinicdata/model/Person.class
+com/nursh/petclinicdata/model/Vet.class
+com/nursh/petclinicdata/model/Pet.class
+com/nursh/petclinicdata/model/Owner.class
+com/nursh/petclinicdata/model/PetType.class
