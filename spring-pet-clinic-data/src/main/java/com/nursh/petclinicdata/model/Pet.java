@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class Pet {
+public class Pet extends BaseEntity {
 
     private Owner owner;
     private LocalDate birthDate;
