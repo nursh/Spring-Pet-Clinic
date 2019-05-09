@@ -10,7 +10,4 @@ public class PetType {
     public PetType() {
     }
 
-    public PetType(String name) {
-        this.name = name;
-    }
 }
