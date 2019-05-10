@@ -30,15 +30,15 @@ public class DataLoader implements CommandLineRunner {
         ann.setFirstName("Anna");
         ann.setLastName("Mull");
 
+
         Owner paige = new Owner();
-        ann.setId(2L);
-        ann.setFirstName("Paige");
-        ann.setLastName("Turner");
+        paige.setId(2L);
+        paige.setFirstName("Paige");
+        paige.setLastName("Turner");
 
         ownerService.save(ann);
         ownerService.save(paige);
-
-        System.out.println("Loaded Owners ------------------");
+        System.out.println("Loaded Owners...");
 
         /*****************
          *
@@ -58,9 +58,7 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(pete);
         vetService.save(bob);
 
-        System.out.println("Loaded Vets ------------------");
-
-
+        System.out.println("Loaded Vets...");
 
     }
 }

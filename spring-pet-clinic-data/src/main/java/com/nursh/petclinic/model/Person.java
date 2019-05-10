@@ -15,4 +15,5 @@ public class Person extends BaseEntity {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
 }

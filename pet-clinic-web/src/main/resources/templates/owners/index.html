@@ -5,7 +5,24 @@
     <meta charset="UTF-8">
     <title>Pet Owner's List</title>
 </head>
+<!--/*@thymesVar id="owner" type="com.nursh.petclinic.model.Owner"*/-->
 <body>
     <h1 th:text="'List of Pet Owners'">Owner List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="owner : ${owners}">
+                <td th:text="${owner.id}">2</td>
+                <td th:text="${owner.firstName}">Hunter</td>
+                <td th:text="${owner.lastName}">Ghost</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
