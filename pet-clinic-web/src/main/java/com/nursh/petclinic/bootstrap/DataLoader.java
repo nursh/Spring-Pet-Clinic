@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    public final OwnerService ownerService;
-    public final VetService vetService;
+    private final OwnerService ownerService;
+    private final VetService vetService;
 
     public DataLoader(OwnerService ownerService, VetService vetService) {
         this.ownerService = ownerService;
@@ -57,7 +57,6 @@ public class DataLoader implements CommandLineRunner {
 
         vetService.save(pete);
         vetService.save(bob);
-
         System.out.println("Loaded Vets...");
 
     }
