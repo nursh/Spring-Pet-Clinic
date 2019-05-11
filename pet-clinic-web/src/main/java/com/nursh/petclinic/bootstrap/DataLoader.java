@@ -1,6 +1,7 @@
 package com.nursh.petclinic.bootstrap;
 
 import com.nursh.petclinic.model.Owner;
+import com.nursh.petclinic.model.Pet;
 import com.nursh.petclinic.model.PetType;
 import com.nursh.petclinic.model.Vet;
 import com.nursh.petclinic.service.OwnerService;
@@ -8,6 +9,8 @@ import com.nursh.petclinic.service.PetTypeService;
 import com.nursh.petclinic.service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -48,12 +51,32 @@ public class DataLoader implements CommandLineRunner {
         ann.setId(1L);
         ann.setFirstName("Anna");
         ann.setLastName("Mull");
+        ann.setAddress("384 Besserer Street");
+        ann.setCity("Ottawa");
+        ann.setTelephone("(932)-282-0871");
+
+        Pet annPet = new Pet();
+        annPet.setPetType(savedDogPetType);
+        annPet.setOwner(ann);
+        annPet.setBirthDate(LocalDate.now());
+        annPet.setName("Bingo");
+        ann.getPets().add(annPet);
         ownerService.save(ann);
 
         Owner paige = new Owner();
         paige.setId(2L);
         paige.setFirstName("Paige");
         paige.setLastName("Turner");
+        paige.setAddress("298 Hangon Street");
+        paige.setCity("Toronto");
+        paige.setTelephone("(892)-982-2897");
+
+        Pet paigePet = new Pet();
+        paigePet.setPetType(savedCatPetType);
+        paigePet.setOwner(paige);
+        paigePet.setBirthDate(LocalDate.now());
+        paigePet.setName("Ursula");
+        paige.getPets().add(paigePet);
         ownerService.save(paige);
 
         System.out.println("Loaded Owners...");

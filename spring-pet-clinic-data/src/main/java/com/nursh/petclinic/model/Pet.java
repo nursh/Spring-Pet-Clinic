@@ -8,15 +8,11 @@ import java.time.LocalDate;
 public class Pet extends BaseEntity {
 
     private Owner owner;
+    private String name;
     private LocalDate birthDate;
     private PetType petType;
 
     public Pet() {
     }
 
-    public Pet(Owner owner, LocalDate birthDate, PetType petType) {
-        this.owner = owner;
-        this.birthDate = birthDate;
-        this.petType = petType;
-    }
 }
