@@ -3,10 +3,10 @@ package com.nursh.petclinic.model;
 import lombok.Data;
 
 @Data
-public class Speciality extends BaseEntity {
+public class Specialty extends BaseEntity {
 
     private String description;
 
-    public Speciality() {
+    public Specialty() {
     }
 }

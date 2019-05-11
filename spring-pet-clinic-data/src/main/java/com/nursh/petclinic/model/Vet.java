@@ -8,7 +8,7 @@ import java.util.Set;
 @Data
 public class Vet extends Person {
 
-    private Set<Speciality> specialities = new HashSet<>();
+    private Set<Specialty> specialities = new HashSet<>();
 
     public Vet() {
     }
