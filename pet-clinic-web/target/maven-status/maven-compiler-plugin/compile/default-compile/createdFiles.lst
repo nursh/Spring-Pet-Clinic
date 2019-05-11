@@ -1,1 +1,5 @@
-com/nursh/petclinicweb/SpringPetClinicApplication.class
+com/nursh/petclinic/SpringPetClinicApplication.class
+com/nursh/petclinic/controllers/OwnerController.class
+com/nursh/petclinic/controllers/VetController.class
+com/nursh/petclinic/bootstrap/DataLoader.class
+com/nursh/petclinic/controllers/IndexController.class
