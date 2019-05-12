@@ -9,7 +9,9 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
     protected Map<Long, T> map = new HashMap<>();
 
     Set<T> findAll() {
-        return new HashSet<>(map.values());
+        Set<T> objects = new HashSet<>();
+        map.values().forEach(objects::add);
+        return objects;
     }
 
     T findById(ID id) {
