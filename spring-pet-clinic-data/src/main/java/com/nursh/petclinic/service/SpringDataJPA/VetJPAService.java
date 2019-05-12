@@ -3,10 +3,14 @@ package com.nursh.petclinic.service.SpringDataJPA;
 import com.nursh.petclinic.model.Vet;
 import com.nursh.petclinic.repositories.VetRepository;
 import com.nursh.petclinic.service.VetService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
+@Profile("springdatajpa")
 public class VetJPAService implements VetService {
     
     private final VetRepository vetRepository;
