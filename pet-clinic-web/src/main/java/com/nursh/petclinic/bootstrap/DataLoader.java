@@ -1,10 +1,7 @@
 package com.nursh.petclinic.bootstrap;
 
 import com.nursh.petclinic.model.*;
-import com.nursh.petclinic.service.OwnerService;
-import com.nursh.petclinic.service.PetTypeService;
-import com.nursh.petclinic.service.SpecialtyService;
-import com.nursh.petclinic.service.VetService;
+import com.nursh.petclinic.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +14,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
 
@@ -101,6 +100,18 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(paige);
 
         System.out.println("Loaded Owners...");
+
+        /*****************
+         *
+         * Visits
+         *****************/
+
+        Visit visitOne = new Visit();
+        visitOne.setDate(LocalDate.now());
+        visitOne.setPet(paigePet);
+        visitOne.setDescription("Cat is farting...");
+
+        visitService.save(visitOne);
 
         /*****************
          *
