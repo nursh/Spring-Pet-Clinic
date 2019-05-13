@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Data
 @Entity(name = "owners")
+@EqualsAndHashCode(exclude = {"pets"})
 public class Owner extends Person {
 
     @Column(name = "address")
@@ -24,7 +25,7 @@ public class Owner extends Person {
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-    @EqualsAndHashCode.Exclude private Set<Pet> pets = new HashSet<>();
+    private Set<Pet> pets = new HashSet<>();
 
     public Owner() {
     }
