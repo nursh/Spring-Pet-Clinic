@@ -1,5 +1,6 @@
 package com.nursh.petclinic.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -28,6 +29,11 @@ public class Owner extends Person {
     private Set<Pet> pets = new HashSet<>();
 
     public Owner() {
+    }
+
+    @Builder
+    public Owner(Long id, String firstname, String lastname) {
+        super(id, firstname, lastname);
     }
 
 
