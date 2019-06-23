@@ -5,8 +5,10 @@ import com.nursh.petclinic.repositories.OwnerRepository;
 import com.nursh.petclinic.repositories.PetRepository;
 import com.nursh.petclinic.repositories.PetTypeRepository;
 import com.nursh.petclinic.service.OwnerService;
+import org.hibernate.Hibernate;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -14,6 +16,7 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
+@Transactional
 public class OwnerJPAService implements OwnerService {
 
     private OwnerRepository ownerRepository;
@@ -35,6 +38,11 @@ public class OwnerJPAService implements OwnerService {
     @Override
     public Owner findById(Long id) {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
+        if (optionalOwner != null) {
+            Hibernate.initialize(optionalOwner.get().getPets());
+            optionalOwner.get().getPets().forEach(pet -> Hibernate.initialize(pet.getVisits()));
+        }
+
         return optionalOwner.orElse(null);
     }
 
