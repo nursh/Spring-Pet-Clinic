@@ -17,8 +17,7 @@ class OwnerServiceMapTest {
     @BeforeEach
     void setUp() {
         ownerServiceMap = new OwnerServiceMap(new PetTypeServiceMap(), new PetServiceMap());
-
-        ownerServiceMap.save(Owner.builder().id(ownerId).lastname(lastname).build());
+        ownerServiceMap.save(Owner.builder().id(ownerId).lastName(lastname).build());
     }
 
     @Test
@@ -69,7 +68,6 @@ class OwnerServiceMapTest {
 
     @Test
     void findByLastnameNull() {
-
         Owner bar = ownerServiceMap.findByLastname("bar");
         assertNull(bar);
     }

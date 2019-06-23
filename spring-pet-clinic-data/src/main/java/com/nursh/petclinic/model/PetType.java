@@ -1,12 +1,16 @@
 package com.nursh.petclinic.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "types")
 public class PetType extends BaseEntity {
@@ -14,7 +18,8 @@ public class PetType extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    public PetType() {
+    @Override
+    public String toString() {
+        return this.name;
     }
-
 }

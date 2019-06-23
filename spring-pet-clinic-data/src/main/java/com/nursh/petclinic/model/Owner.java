@@ -1,8 +1,9 @@
 package com.nursh.petclinic.model;
 
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,9 +12,10 @@ import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity(name = "owners")
-@EqualsAndHashCode(exclude = {"pets"})
 public class Owner extends Person {
 
     @Column(name = "address")
@@ -28,13 +30,19 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
-    public Owner() {
+    public void addPet(Pet pet) {
+        this.pets.add(pet);
+        if (pet.getOwner() != this) {
+            pet.setOwner(this);
+        }
     }
 
     @Builder
-    public Owner(Long id, String firstname, String lastname) {
-        super(id, firstname, lastname);
+    public Owner(Long id, String firstName, String lastName, String address, String city, String telephone, Set<Pet> pets) {
+        super(id, firstName, lastName);
+        this.address = address;
+        this.city = city;
+        this.telephone = telephone;
+        this.pets = pets;
     }
-
-
 }
