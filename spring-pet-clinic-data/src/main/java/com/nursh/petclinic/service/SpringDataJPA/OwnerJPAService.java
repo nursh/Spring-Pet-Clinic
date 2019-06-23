@@ -31,6 +31,9 @@ public class OwnerJPAService implements OwnerService {
         this.petTypeRepository = petTypeRepository;
     }
 
+
+
+
     @Override
     public Owner findByLastname(String lastName) {
         return ownerRepository.findByLastName(lastName);
@@ -38,17 +41,16 @@ public class OwnerJPAService implements OwnerService {
 
     @Override
     public List<Owner> findAllByLastNameLike(String lastName) {
-        return ownerRepository.findAllByLastNameLike(lastName);
+        List <Owner> owners = ownerRepository.findAllByLastNameLike(lastName);
+        owners.forEach(owner -> Hibernate.initialize(owner.getPets()));
+        return owners;
     }
 
     @Override
     public Owner findById(Long id) {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
-        if (optionalOwner != null) {
-            Hibernate.initialize(optionalOwner.get().getPets());
-            optionalOwner.get().getPets().forEach(pet -> Hibernate.initialize(pet.getVisits()));
-        }
-
+        Hibernate.initialize(optionalOwner.get().getPets());
+        optionalOwner.get().getPets().forEach(pet -> Hibernate.initialize(pet.getVisits()));
         return optionalOwner.orElse(null);
     }
 
