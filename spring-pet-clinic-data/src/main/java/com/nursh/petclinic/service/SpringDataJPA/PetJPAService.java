@@ -3,14 +3,18 @@ package com.nursh.petclinic.service.SpringDataJPA;
 import com.nursh.petclinic.model.Pet;
 import com.nursh.petclinic.repositories.PetRepository;
 import com.nursh.petclinic.service.PetService;
+import org.hibernate.Hibernate;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
+@Transactional
 public class PetJPAService implements PetService {
 
     private final PetRepository petRepository;
@@ -21,7 +25,9 @@ public class PetJPAService implements PetService {
 
     @Override
     public Pet findById(Long id) {
-        return petRepository.findById(id).orElse(null);
+        Optional<Pet> optionalPet = petRepository.findById(id);
+        Hibernate.initialize(optionalPet.get().getVisits());
+        return optionalPet.orElse(null);
     }
 
     @Override
